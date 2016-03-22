@@ -14,14 +14,32 @@ function disectTuid(tuid){
     return parsedTuid;
     //((milliseconds * 262144) * 1000).toString()
 }
+function getMillis(inputDate, inputTime){
+    var digitsOnly = /^\d{8}$/g;
+    var date = null;
+    var month = null;
+    var year = null;
+    var currentDate = new Date();
+    console.log(inputDate);
+    if(digitsOnly.test(inputDate)){
+        currentDate.setFullYear(inputDate.substr(0,4));
+        currentDate.setMonth(inputDate.substr(4,2)-1);
+        currentDate.setDate(inputDate.substr(6,2));
+    }
+    if(digitsOnly.test(inputTime)){
 
-function generateTuid(date){
+    }
+}
+function getNumber(inputNumber, max){
+    var digitsOnly = /^\d+$/g;
+}
+function generateTuid(millis, serverid, counter){
 
 }
 
-var formSubmit = function(){
+function tuidParser(){
 
-    var tuidRegex = /\d{17,20}$/g;
+    var tuidRegex = /^\d{17,20}$/g;
 
     document.getElementById("tuidResult").classList.add("invisible");
     document.getElementById("inputTuidError").classList.add("invisible");
@@ -48,24 +66,19 @@ var formSubmit = function(){
     
 };
 
-document.getElementById("generateTuid").onclick = function(){
-    
-    var dateRegex = /\d{8,8}$/g;
-
+function tuidGenerator(){
     var inputDate = document.getElementById("inputDate").value;
-    var isValid = dateRegex.test(inputDate);
-    if(isValid){
-
-    }else{
-
-    }
-    console.log("Generate TUID Clicked " + inputDate );
+    var inputTime = document.getElementById("inputTime").value;
+    var inputServerId = document.getElementById("inputServerId").value;
+    var inputCounter = document.getElementById("inputCounter").value;
+    var millis = getMillis(inputDate, inputTime);
+    console.log("Generate TUID Clicked "  );
 };
 
-
-document.getElementById("disectTuid").onclick  = formSubmit();
+document.getElementById("generateTuid").onclick =  tuidGenerator;
+document.getElementById("disectTuid").onclick  = tuidParser;
 document.getElementById("inputTuid").onkeypress  = function(e){
     if(e.keyCode == 13){
-        formSubmit();
+        tuidParser();
     }
 };

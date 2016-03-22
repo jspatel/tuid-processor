@@ -8,10 +8,16 @@
     <title>TUID Helper</title>
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap.theme.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
     <style type="text/css">
         body {
             min-width:800px;
+        }
+        .form-inline .form-group input {
+            width:89px;
+        }
+        .form-inline .form-group input.small {
+            width:49px;
         }
     </style>
   </head>
@@ -20,8 +26,8 @@
         <h3></h3>
         <div class="row">
             <div class="col-sm-6">
-                <p class="lead">Disect TUID into small pieces</p>
-                <form class="form-inline" action="#">
+                <p class="lead">Disect TUID</p>
+                <form class="form-inline">
                   <div class="form-group">
                     <label class="sr-only" for="inputTuid">Type or paste TUID here</label>
                     <div class="input-group">
@@ -68,18 +74,29 @@
                 <p id="inputTuidError" class="invisible text-warning">Oops! Provided text is not a valid TUID!</p>
             </div>
             <div class="col-sm-6">
-                <p class="lead">Generate TUID from the date</p>
-                <form class="form-inline" action="#">
+                <p class="lead">Generate TUID</p>
+                <form class="form-inline">
                   <div class="form-group">
                     <label class="sr-only" for="inputDate">Type or paste datetime</label>
-                      <input type="text" class="form-control" id="inputDate" placeholder="yyyyMMdd">
+                      <input type="text" class="form-control col-md-1" id="inputDate" placeholder="yyyyMMdd">
                   </div>
                   <div class="form-group">
-                    <label class="sr-only" for="inputDate">Time of the day</label>
-                      <input type="text" class="form-control" id="inputDate" placeholder="hhmmss">
+                    <label class="sr-only" for="inputTime">Time of the day</label>
+                      <input type="text" class="form-control" id="inputTime" placeholder="hhmmss">
                   </div>
-                  <button type="submit" class="btn btn-primary" id="generateTuid">Generate</button>
+                <div class="form-group">
+                    <label class="sr-only" for="inputServerId">Server ID</label>
+                      <input type="text" class="form-control small" id="inputServerId" placeholder="< 255">
+                  </div>
+                 <div class="form-group">
+                    <label class="sr-only" for="inputCounter">Time of the day</label>
+                      <input type="text" class="form-control small" id="inputCounter" placeholder="< 1000">
+                  </div>
+                  <button type="button" class="btn btn-primary" id="generateTuid">Tuid</button>
                 </form>
+
+                <br/>
+                  <p class="info">Provide date (in YYYYMMDD format), time (in HHMMSS format), server id (&lt; 256), and random counter (&lt; 1024) to generate TUID. If none is provided, current local time will be used to generate TUID. Randomly generated number will be used for the counter and server id. </p>
             </div>
         </div>
         <br/>
