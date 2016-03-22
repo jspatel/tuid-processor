@@ -19,7 +19,7 @@
     <div class="container">
         <h3></h3>
         <div class="row">
-            <div class="col-sm-7">
+            <div class="col-sm-6">
                 <p class="lead">Disect TUID into small pieces</p>
                 <form class="form-inline" action="#">
                   <div class="form-group">
@@ -28,7 +28,7 @@
                       <input type="text" class="form-control" id="inputTuid" placeholder="TUID">
                     </div>
                   </div>
-                  <button type="submit" class="btn btn-primary" id="disectTuid">Disect</button>
+                  <button type="button" class="btn btn-primary" id="disectTuid">Disect</button>
                 </form>
                 <br/>
                 <div id="tuidResult" class="invisible">
@@ -55,11 +55,11 @@
                                 <td id="serveridCol"></td>
                             </tr>                                                        
                             <tr>
-                                <th scope="row">Local Timestamp</th>
+                                <th scope="row">Local</th>
                                 <td id="localDateCol"></td>
                             </tr>
                             <tr>
-                                <th scope="row">UTC Timestamp</th>
+                                <th scope="row">UTC</th>
                                 <td id="utcDateCol"></td>
                             </tr>
                         </tbody>
@@ -67,16 +67,18 @@
                 </div>
                 <p id="inputTuidError" class="invisible text-warning">Oops! Provided text is not a valid TUID!</p>
             </div>
-            <div class="col-sm-5">
+            <div class="col-sm-6">
                 <p class="lead">Generate TUID from the date</p>
-                <form class="form-inline">
+                <form class="form-inline" action="#">
                   <div class="form-group">
-                    <label class="sr-only" for="inputDate">Type of paste datetime</label>
-                    <div class="input-group">
+                    <label class="sr-only" for="inputDate">Type or paste datetime</label>
                       <input type="text" class="form-control" id="inputDate" placeholder="yyyyMMdd">
-                    </div>
                   </div>
-                  <button type="button" class="btn btn-primary" id="generateTuid">Generate</button>
+                  <div class="form-group">
+                    <label class="sr-only" for="inputDate">Time of the day</label>
+                      <input type="text" class="form-control" id="inputDate" placeholder="hhmmss">
+                  </div>
+                  <button type="submit" class="btn btn-primary" id="generateTuid">Generate</button>
                 </form>
             </div>
         </div>

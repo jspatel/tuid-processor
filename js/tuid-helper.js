@@ -19,7 +19,7 @@ function generateTuid(date){
 
 }
 
-document.getElementById("disectTuid").onclick = function(){
+var formSubmit = function(){
 
     var tuidRegex = /\d{17,20}$/g;
 
@@ -60,4 +60,12 @@ document.getElementById("generateTuid").onclick = function(){
 
     }
     console.log("Generate TUID Clicked " + inputDate );
+};
+
+
+document.getElementById("disectTuid").onclick  = formSubmit();
+document.getElementById("inputTuid").onkeypress  = function(e){
+    if(e.keyCode == 13){
+        formSubmit();
+    }
 };
