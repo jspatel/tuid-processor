@@ -45,7 +45,8 @@ function findAndHighlightTuid(replacement, searchNode) {
     }
 }
 //console.log("Executing search");
+
 findAndHighlightTuid(function(tuid){
-    return '<i><u>' + tuid + '</u></i>';
-    console.log(tuid);
+        console.log("Found: " + tuid);
+        return '<i><u>' + tuid + '</u></i>';
 });
