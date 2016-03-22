@@ -21,14 +21,14 @@
         <div class="row">
             <div class="col-sm-7">
                 <p class="lead">Disect TUID into small pieces</p>
-                <form class="form-inline">
+                <form class="form-inline" action="#">
                   <div class="form-group">
                     <label class="sr-only" for="inputTuid">Type or paste TUID here</label>
                     <div class="input-group">
                       <input type="text" class="form-control" id="inputTuid" placeholder="TUID">
                     </div>
                   </div>
-                  <button type="button" class="btn btn-primary" id="disectTuid">Disect</button>
+                  <button type="submit" class="btn btn-primary" id="disectTuid">Disect</button>
                 </form>
                 <br/>
                 <div id="tuidResult" class="invisible">
@@ -39,19 +39,27 @@
                                 <td id="tuidCol"></td>
                             </tr>
                             <tr>
+                                <th scope="row">TUID Base</th>
+                                <td id="tuidBaseCol"></td>
+                            </tr>                            
+                            <tr>
                                 <th scope="row">Epoch</th>
                                 <td id="millisCol"></td>
                             </tr>
                             <tr>
-                                <th scope="row">TUID Base</th>
-                                <td id="tuidBaseCol"></td>
+                                <th scope="row">Counter</th>
+                                <td id="counterCol"></td>
                             </tr>
                             <tr>
-                                <th scope="row">Local Date</th>
+                                <th scope="row">Server ID</th>
+                                <td id="serveridCol"></td>
+                            </tr>                                                        
+                            <tr>
+                                <th scope="row">Local Timestamp</th>
                                 <td id="localDateCol"></td>
                             </tr>
                             <tr>
-                                <th scope="row">UTC Date</th>
+                                <th scope="row">UTC Timestamp</th>
                                 <td id="utcDateCol"></td>
                             </tr>
                         </tbody>
