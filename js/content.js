@@ -3,11 +3,13 @@
  https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType
  http://james.padolsey.com/javascript/find-and-replace-text-with-javascript/
 */
-console.log("TUID Processor content script loaded for the page");
+
 
 var tuidRegex = /\d{17,20}/g;
 var NODE_ELEMENT = 1;
 var NODE_TEXT = 3;
+var ENABLED = false;
+
 function findAndHighlightTuid(replacement, searchNode) {
     //console.log("Initiating search");
     if (typeof replacement === 'undefined') {
@@ -45,8 +47,10 @@ function findAndHighlightTuid(replacement, searchNode) {
     }
 }
 //console.log("Executing search");
-
-findAndHighlightTuid(function(tuid){
-        console.log("Found: " + tuid);
-        return '<i><u>' + tuid + '</u></i>';
-});
+if(ENABLED){
+    console.log("TUID Processor content script loaded for the page");
+    findAndHighlightTuid(function(tuid){
+            console.log("Found: " + tuid);
+            return '<i><u>' + tuid + '</u></i>';
+    });
+}

@@ -1,6 +1,7 @@
 {
-  "background": {
-    "scripts" :["js/tuid-processor.js"]
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_title": "TUID Helper"
   },
   "content_scripts": [
     {
@@ -9,7 +10,7 @@
     }
   ],
   "description": "All in one swiss army knife for TUID.",
-  "name": "TUID Processor",
+  "name": "TUID Helper",
   "version": "0.1",
   "minimum_chrome_version": "9",
   "manifest_version": 2,
