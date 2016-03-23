@@ -4,12 +4,14 @@
 function disectTuid(tuid){
     var parsedTuid = {};
     parsedTuid.tuid = tuid;
-    parsedTuid.millis = Math.floor(tuid / 262144).toString();
+    parsedTuid.millis = Math.floor(tuid / 262144);
     parsedTuid.tuidBase = (parsedTuid.millis * 262144).toString();
     parsedTuid.localDate = new Date(parsedTuid.millis);
     parsedTuid.utcDate = parsedTuid.localDate.toUTCString();
-    parsedTuid.otherParts = tuid.substr(tuid.length-6);
-    parsedTuid.otherParts = (parsedTuid.otherParts & 0x3FFFF).toString();
+    parsedTuid.otherParts = (parsedTuid.tuid & 0x3FFFF).toString();
+    tuid.substr(tuid.length-6,6)
+    bitwiseAnd(tuid, 0x3FFFF);
+    bitwiseAnd(tuid, 0xFF);
     parsedTuid.serverID = (parsedTuid.otherParts & 0xFF).toString();
     parsedTuid.counter = (parsedTuid.otherParts >>> 8).toString();
     parsedTuid.counter = (parsedTuid.counter & 0x3FF).toString();
