@@ -9,9 +9,9 @@
       "js": ["js/content.js"]
     }
   ],
-  "description": "All in one swiss army knife for TUID.",
+  "description": "Helper extension to generate and disect TUID.",
   "name": "TUID Helper",
-  "version": "0.1",
+  "version": "0.7",
   "minimum_chrome_version": "9",
   "manifest_version": 2,
   "permissions":["tabs", "storage"]

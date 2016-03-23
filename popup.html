@@ -14,8 +14,8 @@
             min-width:800px;
         }
         .form-inline .form-group input {
-            width:89px;
-        }
+            width:100px;
+        } 
         .form-inline .form-group input.small {
             width:49px;
         }
@@ -45,21 +45,21 @@
                                 <td id="tuidCol"></td>
                             </tr>
                             <tr>
-                                <th scope="row">TUID Base</th>
+                                <th scope="row">Base</th>
                                 <td id="tuidBaseCol"></td>
                             </tr>                            
                             <tr>
                                 <th scope="row">Epoch</th>
                                 <td id="millisCol"></td>
                             </tr>
-                            <tr>
+<!--                            <tr>
                                 <th scope="row">Counter</th>
                                 <td id="counterCol"></td>
                             </tr>
                             <tr>
                                 <th scope="row">Server ID</th>
                                 <td id="serveridCol"></td>
-                            </tr>                                                        
+                            </tr>                                                      --> 
                             <tr>
                                 <th scope="row">Local</th>
                                 <td id="localDateCol"></td>
@@ -72,7 +72,6 @@
                     </table>
                 </div>
                 <p id="inputTuidError" class="invisible text-warning">Oops! Provided text is not a valid TUID!</p>
-                <p>1458702678713    382390155008540672  382390155008802044  1020    252</p>
             </div>
             <div class="col-sm-6">
                 <p class="lead">Generate TUID</p>
@@ -85,19 +84,51 @@
                     <label class="sr-only" for="inputTime">Time of the day</label>
                       <input type="text" class="form-control" id="inputTime" placeholder="hhmmss">
                   </div>
-                <div class="form-group">
+                <!-- <div class="form-group invisible">
                     <label class="sr-only" for="inputServerId">Server ID</label>
                       <input type="text" class="form-control small" id="inputServerId" placeholder="< 255">
                   </div>
-                 <div class="form-group">
+                 <div class="form-group invisible">
                     <label class="sr-only" for="inputCounter">Time of the day</label>
                       <input type="text" class="form-control small" id="inputCounter" placeholder="< 1000">
-                  </div>
-                  <button type="button" class="btn btn-primary" id="generateTuid">Tuid</button>
-                </form>
-
-                <br/>
-                  <p class="info">Provide date (in YYYYMMDD format), time (in HHMMSS format), server id (&lt; 256), and random counter (&lt; 1024) to generate TUID. If none is provided, current local time will be used to generate TUID. Randomly generated number will be used for the counter and server id. </p>
+                  </div> -->
+                  <button type="button" class="btn btn-primary" id="generateTuid">Generate</button>
+                </form> <br/>
+                <div id="gentuidResult" class="invisible">
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr>
+                                <th scope="row">TUID</th>
+                                <td id="gentuidCol"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Base</th>
+                                <td id="gentuidBaseCol"></td>
+                            </tr>                            
+                            <tr>
+                                <th scope="row">Epoch</th>
+                                <td id="genmillisCol"></td>
+                            </tr>
+<!--                            <tr>
+                                <th scope="row">Counter</th>
+                                <td id="counterCol"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Server ID</th>
+                                <td id="serveridCol"></td>
+                            </tr>                                                      --> 
+                            <tr>
+                                <th scope="row">Local</th>
+                                <td id="genlocalDateCol"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">UTC</th>
+                                <td id="genutcDateCol"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                  <p class="info">Provide date (in YYYYMMDD format) and time (in HHMMSS format) to generate TUID. If none is provided, current local time will be used to generate TUID. Due to JavaScript technical limitation server id and counter will not be used to generate TUID. </p>
             </div>
         </div>
         <br/>
