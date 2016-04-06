@@ -14,10 +14,10 @@
             min-width:800px;
         }
         .form-inline .form-group input {
-            width:100px;
+            width:89px;
         } 
         .form-inline .form-group input.small {
-            width:49px;
+            width:45px;
         }
     </style>
   </head>
@@ -52,14 +52,14 @@
                                 <th scope="row">Epoch</th>
                                 <td id="millisCol"></td>
                             </tr>
-<!--                            <tr>
+                            <tr>
                                 <th scope="row">Counter</th>
                                 <td id="counterCol"></td>
                             </tr>
                             <tr>
                                 <th scope="row">Server ID</th>
                                 <td id="serveridCol"></td>
-                            </tr>                                                      --> 
+                            </tr>
                             <tr>
                                 <th scope="row">Local</th>
                                 <td id="localDateCol"></td>
@@ -84,15 +84,15 @@
                     <label class="sr-only" for="inputTime">Time of the day</label>
                       <input type="text" class="form-control" id="inputTime" placeholder="hhmmss">
                   </div>
-                <!-- <div class="form-group invisible">
+                <div class="form-group ">
                     <label class="sr-only" for="inputServerId">Server ID</label>
                       <input type="text" class="form-control small" id="inputServerId" placeholder="< 255">
                   </div>
-                 <div class="form-group invisible">
+                 <div class="form-group">
                     <label class="sr-only" for="inputCounter">Time of the day</label>
                       <input type="text" class="form-control small" id="inputCounter" placeholder="< 1000">
-                  </div> -->
-                  <button type="button" class="btn btn-primary" id="generateTuid">Generate</button>
+                  </div>
+                  <button type="button" class="btn btn-primary" id="generateTuid">Get</button>
                 </form> <br/>
                 <div id="gentuidResult" class="invisible">
                     <table class="table table-hover">
@@ -109,14 +109,14 @@
                                 <th scope="row">Epoch</th>
                                 <td id="genmillisCol"></td>
                             </tr>
-<!--                            <tr>
+                            <tr>
                                 <th scope="row">Counter</th>
-                                <td id="counterCol"></td>
+                                <td id="gencounterCol"></td>
                             </tr>
                             <tr>
                                 <th scope="row">Server ID</th>
-                                <td id="serveridCol"></td>
-                            </tr>                                                      --> 
+                                <td id="genserveridCol"></td>
+                            </tr>
                             <tr>
                                 <th scope="row">Local</th>
                                 <td id="genlocalDateCol"></td>
@@ -128,12 +128,13 @@
                         </tbody>
                     </table>
                 </div>
-                  <p class="info">Provide date (in YYYYMMDD format) and time (in HHMMSS format) to generate TUID. If none is provided, current local time will be used to generate TUID. Due to JavaScript technical limitation server id and counter will not be used to generate TUID. </p>
+                  <p class="info">Provide date (in YYYYMMDD format) and time (in HHMMSS format) to generate TUID. If none is provided, current local time will be used to generate TUID. </p>
             </div>
         </div>
         <br/>
     </div>
-
+    <script src="js/BigInteger.js"></script>
+    <script src="js/TUID.js"></script>
     <script src="js/tuid-helper.js"></script>
   </body>
 </html>
