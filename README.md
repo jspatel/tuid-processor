@@ -40,4 +40,7 @@ This extension only works with specific bit segments.
 
 **_Epoch (46 bits) + Counter (10 bits) + Server id (8 bits) == Tuid (64 bites)_**
 
+#### Credits
+This project uses the [JavaScript BigInteger](https://github.com/silentmatt/javascript-biginteger) library. 
+
 
