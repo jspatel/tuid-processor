@@ -25,7 +25,7 @@ public long generateTuid(){
     return tuid;
 }
 ```
-Base on the above example, the bit segments distribution looks like following.
+Based on the above example, the bit segments distribution looks like following.
 
 Epoch | Counter | Server id
 :--- | :--- | :---
