@@ -1,5 +1,62 @@
 
+var tuids = [];
+var historysize = 25;
+function loadTuids() {
+    chrome.storage.local.get('history', function(items) {
+        tuids =  items.history;
+        for(var i=0; i< tuids.length; i++){
+            addTuidRow(tuids[i].tuidtype,  tuids[i].tuid, tuids[i].localdate);
+        }
+    });
+}
 
+function clearTuids() {
+    tuids = [];
+    saveTuids();
+    var myNode = document.getElementById("history-table");
+    while (myNode.firstChild) {
+        myNode.removeChild(myNode.firstChild);
+    }
+    loadTuids();
+}
+function saveTuids() {
+    chrome.storage.local.set({
+        history: tuids
+    }, function() {
+        // console.log("Tuid History was saved");
+    });
+}
+
+function addTuidRow(tuidtype, tuid, localdate){
+    var tbody = document.getElementById("history-table");
+    var tr = document.createElement("tr");
+    var type =document.createElement("td");
+    type.setAttribute("class", "mdl-data-table__cell--non-numeric");
+    type.appendChild(document.createTextNode(tuidtype));
+
+    var value =document.createElement("td");
+    value.appendChild(document.createTextNode(tuid));
+
+    var local =document.createElement("td");
+    local.setAttribute("class", "mdl-data-table__cell--non-numeric");
+    local.appendChild(document.createTextNode(localdate));
+
+    tr.appendChild(type);
+    tr.appendChild(value);
+    tr.appendChild(local);
+    tbody.appendChild(tr);
+}
+
+function addTuid(tuidtype, tuid) {
+    tuids.push({tuidtype: tuidtype, tuid: tuid.tuid.toString(), localdate: tuid.toLocaleDateString()});
+    if(tuids.length > historysize){
+        tuids.shift();
+        var myNode = document.getElementById("history-table");
+        myNode.removeChild(myNode.firstChild);
+    }
+    addTuidRow(tuidtype, tuid.tuid, tuid.toLocaleDateString());
+    saveTuids(tuids);
+}
 
 function getMillis(inputDate, inputTime){
     var validateDate = /^\d{8}$/g;
@@ -42,7 +99,6 @@ function tuidParser(){
     var tuidRegex = /^\d{17,20}$/g;
 
     document.getElementById("tuidResult").classList.add("invisible");
-    document.getElementById("inputTuidError").classList.add("invisible");
 
     var inputTuid = document.getElementById("inputTuid").value;
     var isValid = tuidRegex.test(inputTuid);
@@ -59,6 +115,7 @@ function tuidParser(){
         document.getElementById("localDateCol").innerHTML = tuid.toLocaleDateString();
         document.getElementById("utcDateCol").innerHTML = tuid.toUTCDateString();
         document.getElementById("inputTuid").value = "";
+        addTuid('D', tuid);
     }else{
         document.getElementById("inputTuidError").classList.remove("invisible");
     }
@@ -86,12 +143,16 @@ function tuidGenerator(){
 
     document.getElementById("inputDate").value = "";
     document.getElementById("inputTime").value = "";
+    addTuid('G', tuid);
 };
 
 document.getElementById("generateTuid").onclick =  tuidGenerator;
+document.getElementById("clearhistory").onclick =  clearTuids;
 document.getElementById("disectTuid").onclick  = tuidParser;
 document.getElementById("inputTuid").onkeypress  = function(e){
     if(e.keyCode == 13){
         tuidParser();
     }
 };
+loadTuids();
+
