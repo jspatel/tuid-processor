@@ -1,140 +1,192 @@
 <!doctype html>
 
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>TUID Helper</title>
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="css/material.light_blue-red.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/material.icons.css">
     <style type="text/css">
         body {
-            min-width:800px;
+            min-width: 550px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 20px;
         }
-        .form-inline .form-group input {
-            width:89px;
-        } 
-        .form-inline .form-group input.small {
-            width:45px;
+        center{
+            margin: auto;
         }
     </style>
-  </head>
-  <body>
-    <div class="container">
-        <h3></h3>
-        <div class="row">
-            <div class="col-sm-6">
-                <p class="lead">Disect TUID</p>
-                <form class="form-inline">
-                  <div class="form-group">
-                    <label class="sr-only" for="inputTuid">Type or paste TUID here</label>
-                    <div class="input-group">
-                      <input type="text" class="form-control" id="inputTuid" placeholder="TUID">
-                    </div>
-                  </div>
-                  <button type="button" class="btn btn-primary" id="disectTuid">Disect</button>
-                </form>
-                <br/>
-                <div id="tuidResult" class="invisible">
-                    <table class="table table-hover">
-                        <tbody>
-                            <tr>
-                                <th scope="row">TUID</th>
-                                <td id="tuidCol"></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Base</th>
-                                <td id="tuidBaseCol"></td>
-                            </tr>                            
-                            <tr>
-                                <th scope="row">Epoch</th>
-                                <td id="millisCol"></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Counter</th>
-                                <td id="counterCol"></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Server ID</th>
-                                <td id="serveridCol"></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Local</th>
-                                <td id="localDateCol"></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">UTC</th>
-                                <td id="utcDateCol"></td>
-                            </tr>
-                        </tbody>
-                    </table>
+</head>
+<body>
+
+<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+    <div class="mdl-tabs__tab-bar">
+        <a href="#disect-panel" class="mdl-tabs__tab is-active">Disect TUID</a>
+        <a href="#generate-panel" class="mdl-tabs__tab">Generate TUID</a>
+        <a href="#history-panel" class="mdl-tabs__tab">History</a>
+    </div>
+
+    <div class="mdl-tabs__panel is-active" id="disect-panel">
+
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--4-col">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" pattern="[34567]\d{17,18}"
+                           id="inputTuid">
+                    <label class="mdl-textfield__label" for="inputTuid">Tuid...</label>
+                    <span class="mdl-textfield__error">Input is not a tuid!</span>
+                    <div class="mdl-tooltip" for="inputTuid">At least 18 digits, with starting digit between 3-7</div>
                 </div>
-                <p id="inputTuidError" class="invisible text-warning">Oops! Provided text is not a valid TUID!</p>
             </div>
-            <div class="col-sm-6">
-                <p class="lead">Generate TUID</p>
-                <form class="form-inline">
-                  <div class="form-group">
-                    <label class="sr-only" for="inputDate">Type or paste datetime</label>
-                      <input type="text" class="form-control col-md-1" id="inputDate" placeholder="yyyyMMdd">
-                  </div>
-                  <div class="form-group">
-                    <label class="sr-only" for="inputTime">Time of the day</label>
-                      <input type="text" class="form-control" id="inputTime" placeholder="hhmmss">
-                  </div>
-                <div class="form-group ">
-                    <label class="sr-only" for="inputServerId">Server ID</label>
-                      <input type="text" class="form-control small" id="inputServerId" placeholder="< 255">
-                  </div>
-                 <div class="form-group">
-                    <label class="sr-only" for="inputCounter">Time of the day</label>
-                      <input type="text" class="form-control small" id="inputCounter" placeholder="< 1000">
-                  </div>
-                  <button type="button" class="btn btn-primary" id="generateTuid">Get</button>
-                </form> <br/>
-                <div id="gentuidResult" class="invisible">
-                    <table class="table table-hover">
-                        <tbody>
-                            <tr>
-                                <th scope="row">TUID</th>
-                                <td id="gentuidCol"></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Base</th>
-                                <td id="gentuidBaseCol"></td>
-                            </tr>                            
-                            <tr>
-                                <th scope="row">Epoch</th>
-                                <td id="genmillisCol"></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Counter</th>
-                                <td id="gencounterCol"></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Server ID</th>
-                                <td id="genserveridCol"></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Local</th>
-                                <td id="genlocalDateCol"></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">UTC</th>
-                                <td id="genutcDateCol"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                  <p class="info">Provide date (in YYYYMMDD format) and time (in HHMMSS format) to generate TUID. If none is provided, current local time will be used to generate TUID. </p>
+            <div class="mdl-cell mdl-cell--1-col">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                        id="disectTuid">Disect
+                </button>
             </div>
         </div>
-        <br/>
+
+        <table class="mdl-data-table mdl-js-data-table invisible" id="tuidResult">
+            <tbody>
+            <tr>
+                <td class="mdl-data-table__cell--non-numeric">TUID</td>
+                <td id="tuidCol"></td>
+            </tr>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">Base</th>
+                <td id="tuidBaseCol"></td>
+            </tr>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">Epoch</th>
+                <td id="millisCol"></td>
+            </tr>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">Counter</th>
+                <td id="counterCol"></td>
+            </tr>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">Server ID</th>
+                <td id="serveridCol"></td>
+            </tr>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">Local</th>
+                <td class="mdl-data-table__cell--non-numeric" id="localDateCol"></td>
+            </tr>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">UTC</th>
+                <td class="mdl-data-table__cell--non-numeric" id="utcDateCol"></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-    <script src="js/BigInteger.js"></script>
-    <script src="js/TUID.js"></script>
-    <script src="js/tuid-helper.js"></script>
-  </body>
+    <div class="mdl-tabs__panel" id="generate-panel">
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--2-col">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" pattern="[1234]\d{3}[01]\d[0123]\d"
+                           id="inputDate">
+                    <label class="mdl-textfield__label" for="inputDate">Date...</label>
+                    <span class="mdl-textfield__error">Input is not a date!</span>
+                    <div class="mdl-tooltip" for="inputDate">Input date in YYYYMMDD format</div>
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--2-col">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" pattern="[0-2]\d[0-5]\d[0-5]\d"
+                           id="inputTime">
+                    <label class="mdl-textfield__label" for="inputTime">Time...</label>
+                    <span class="mdl-textfield__error">Input is not a time!</span>
+                    <div class="mdl-tooltip" for="inputTime">Input time in HHMMSS format</div>
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--1-col">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" pattern="\d{1,4}"
+                           id="inputCounter">
+                    <label class="mdl-textfield__label" for="inputServerId">Counter...</label>
+                    <span class="mdl-textfield__error">Input is not a counter!</span>
+                    <div class="mdl-tooltip" for="inputCounter">Counter value < 1023</div>
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--1-col">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" pattern="\d{1,3}"
+                           id="inputServerId">
+                    <label class="mdl-textfield__label" for="inputServerId">Server...</label>
+                    <span class="mdl-textfield__error">Input is not a server id!</span>
+                    <div class="mdl-tooltip" for="inputServerId">Server id value < 255</div>
+                </div>
+            </div>
+            <div class="mdl-cell mdl-cell--1-col">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                        id="generateTuid">Generate
+                </button>
+            </div>
+
+        </div>
+        <table class="mdl-data-table mdl-js-data-table invisible" id="gentuidResult">
+            <tbody>
+            <tr>
+                <td class="mdl-data-table__cell--non-numeric">TUID</td>
+                <td id="gentuidCol"></td>
+            </tr>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">Base</th>
+                <td id="gentuidBaseCol"></td>
+            </tr>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">Epoch</th>
+                <td id="genmillisCol"></td>
+            </tr>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">Counter</th>
+                <td id="gencounterCol"></td>
+            </tr>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">Server ID</th>
+                <td id="genserveridCol"></td>
+            </tr>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">Local</th>
+                <td class="mdl-data-table__cell--non-numeric" id="genlocalDateCol"></td>
+            </tr>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">UTC</th>
+                <td class="mdl-data-table__cell--non-numeric" id="genutcDateCol"></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div class="mdl-tabs__panel" id="history-panel">
+        <div class="mdl-grid">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" style="margin: auto;"
+                    id="clearhistory">Clear History
+            </button>
+        </div>
+        <table class="mdl-data-table mdl-js-data-table">
+            <thead>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">Type</th>
+                <th>Tuid</th>
+                <th class="mdl-data-table__cell--non-numeric">Tuid Date</th>
+            </tr>
+            </thead>
+            <tbody id="history-table">
+
+            </tbody>
+        </table>
+
+        <!--<p>G: Generated Tuid D: Disected Tuid</p>-->
+    </div>
+</div>
+
+
+<script src="js/material.min.js"></script>
+<script src="js/BigInteger.js"></script>
+<script src="js/TUID.js"></script>
+<script src="js/tuid-helper.js"></script>
+</body>
 </html>
