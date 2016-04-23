@@ -157,7 +157,7 @@ function tuidGenerator(){
 
 document.getElementById("generateTuid").onclick =  tuidGenerator;
 document.getElementById("clearhistory").onclick =  clearTuids;
-document.getElementById("disectTuid").onclick  = tuidParser;
+document.getElementById("dissectTuid").onclick  = tuidParser;
 document.getElementById("inputTuid").onkeypress  = function(e){
     if(e.keyCode == 13){
         tuidParser();
