@@ -10,23 +10,17 @@
     <link rel="stylesheet" href="css/material.icons.css">
     <style type="text/css">
         body {
-            min-width: 550px;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            padding-left: 20px;
-        }
-        center{
-            margin: auto;
+            min-width: 580px;
         }
     </style>
 </head>
 <body>
 
-<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect" style="padding-top: 20px; padding-left: 20px;">
     <div class="mdl-tabs__tab-bar">
         <a href="#disect-panel" class="mdl-tabs__tab is-active">Disect TUID</a>
         <a href="#generate-panel" class="mdl-tabs__tab">Generate TUID</a>
-        <a href="#history-panel" class="mdl-tabs__tab">History</a>
+        <a href="#history-panel" class="mdl-tabs__tab"> <span class="mdl-badge" id="history-count" >History</span></a>
     </div>
 
     <div class="mdl-tabs__panel is-active" id="disect-panel">

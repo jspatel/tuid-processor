@@ -3,13 +3,22 @@ var tuids = [];
 var historysize = 25;
 function loadTuids() {
     chrome.storage.local.get('history', function(items) {
-        tuids =  items.history;
-        for(var i=0; i< tuids.length; i++){
-            addTuidRow(tuids[i].tuidtype,  tuids[i].tuid, tuids[i].localdate);
+        if(items !== undefined && items.history !== undefined){
+            tuids =  items.history;
+            for(var i=0; i< tuids.length; i++){
+                addTuidRow(tuids[i].tuidtype,  tuids[i].tuid, tuids[i].localdate);
+            }
+            refreshHistoryCount();
         }
     });
 }
 
+function refreshHistoryCount() {
+    var myNode = document.getElementById("history-count");
+    if(tuids !== undefined){
+        myNode.setAttribute("data-badge",tuids.length.toString());
+    }
+}
 function clearTuids() {
     tuids = [];
     saveTuids();
@@ -23,7 +32,7 @@ function saveTuids() {
     chrome.storage.local.set({
         history: tuids
     }, function() {
-        // console.log("Tuid History was saved");
+        refreshHistoryCount();
     });
 }
 
