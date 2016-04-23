@@ -12,18 +12,24 @@
         body {
             min-width: 580px;
         }
+        .emphasis{
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
 <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect" style="padding-top: 20px; padding-left: 20px;">
     <div class="mdl-tabs__tab-bar">
-        <a href="#disect-panel" class="mdl-tabs__tab is-active">Disect TUID</a>
-        <a href="#generate-panel" class="mdl-tabs__tab">Generate TUID</a>
-        <a href="#history-panel" class="mdl-tabs__tab"> <span class="mdl-badge" id="history-count" >History</span></a>
+        <a href="#dissect-panel" class="mdl-tabs__tab is-active" id="ttdissect">Dissect</a>
+        <a href="#generate-panel" class="mdl-tabs__tab" id="ttgenerate">Generate</a>
+        <a href="#history-panel" class="mdl-tabs__tab" id="tthistory"> <span class="mdl-badge" id="history-count" >History</span></a>
+        <a href="https://github.com/jspatel/tuid-processor" target="_blank" style="padding: 10px 15px 0 15px;" id="tthome">
+            <i class="material-icons">home</i>
+        </a>
     </div>
 
-    <div class="mdl-tabs__panel is-active" id="disect-panel">
+    <div class="mdl-tabs__panel is-active" id="dissect-panel">
 
         <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--4-col">
@@ -37,7 +43,7 @@
             </div>
             <div class="mdl-cell mdl-cell--1-col">
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                        id="disectTuid">Disect
+                        id="dissectTuid">Dissect
                 </button>
             </div>
         </div>
@@ -172,11 +178,14 @@
 
             </tbody>
         </table>
-
-        <!--<p>G: Generated Tuid D: Disected Tuid</p>-->
     </div>
-</div>
 
+    <div class="mdl-tooltip " for="ttdissect">Dissect provided TUID</div>
+    <div class="mdl-tooltip " for="tthome">Visit TUID Helper home page for more information.</div>
+    <div class="mdl-tooltip " for="ttgenerate">Generated TUID froom provided input or using local date time.</div>
+    <div class="mdl-tooltip " for="tthistory">The history of most recently 25 <span class="emphasis">D</span>issected or <span class="emphasis">G</span>enerated TUIDs.</div>
+
+</div>
 
 <script src="js/material.min.js"></script>
 <script src="js/BigInteger.js"></script>

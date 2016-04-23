@@ -1,13 +1,13 @@
 TUID Processor
 ===============
 ### What is this?
-It is an extension for the [Chrome](https://www.google.com/chrome/browser/desktop/) browser to disect and generate Tuid. You can install it from [Chrome Store](https://chrome.google.com/webstore/detail/tuid-helper/nipadebnhocklcbfppfffkfonfkehigo).
+It is an extension for the [Chrome](https://www.google.com/chrome/browser/desktop/) browser to dissect and generate TUID. You can install it from [Chrome Store](https://chrome.google.com/webstore/detail/tuid-helper/nipadebnhocklcbfppfffkfonfkehigo).
 
 ### What is TUID?
 TUID stands for **_Time based unique identifier_**. TUID is a 64 bit long unsigned integer value.
 
 ### How can I generate one?
-It is generated using [epoch](https://en.wikipedia.org/wiki/Unix_time), and some _random_ value. It is constructed using three segments, epoch, serverid, and a counter value. You can add or remove different bit segments.
+It is generated using [epoch](https://en.wikipedia.org/wiki/Unix_time), and some _random_ value. It is constructed using three segments; epoch, serverid, and a counter value. You can add or remove different bit segments.
 
 Following is the sample code (untested) to generate TUID in Java.
 ```java
@@ -41,6 +41,10 @@ This extension only works with specific bit segments.
 **_Epoch (46 bits) + Counter (10 bits) + Server id (8 bits) == Tuid (64 bites)_**
 
 #### Credits
-This project uses the [JavaScript BigInteger](https://github.com/silentmatt/javascript-biginteger) library. 
+This project uses
+- [JavaScript BigInteger](https://github.com/silentmatt/javascript-biginteger)
+- [Material Design Lite](https://getmdl.io/)
+
+
 
 
