@@ -57,12 +57,13 @@ function addTuidRow(tuidtype, tuid, localdate){
 }
 
 function addTuid(tuidtype, tuid) {
-    tuids.push({tuidtype: tuidtype, tuid: tuid.tuid.toString(), localdate: tuid.toLocaleDateString()});
-    if(tuids.length > historysize){
-        tuids.shift();
+
+    if(tuids.length +1 > historysize){
+        tuids.pop();
         var myNode = document.getElementById("history-table");
-        myNode.removeChild(myNode.firstChild);
+        myNode.removeChild(myNode.lastChild);
     }
+    tuids.unshift({tuidtype: tuidtype, tuid: tuid.tuid.toString(), localdate: tuid.toLocaleDateString()});
     addTuidRow(tuidtype, tuid.tuid, tuid.toLocaleDateString());
     saveTuids(tuids);
 }
