@@ -53,16 +53,17 @@ function addTuidRow(tuidtype, tuid, localdate){
     tr.appendChild(type);
     tr.appendChild(value);
     tr.appendChild(local);
-    tbody.appendChild(tr);
+    tbody.insertBefore(tr, tbody.firstChild);
 }
 
 function addTuid(tuidtype, tuid) {
-    tuids.push({tuidtype: tuidtype, tuid: tuid.tuid.toString(), localdate: tuid.toLocaleDateString()});
-    if(tuids.length > historysize){
-        tuids.shift();
+
+    if(tuids.length +1 > historysize){
+        tuids.pop();
         var myNode = document.getElementById("history-table");
-        myNode.removeChild(myNode.firstChild);
+        myNode.removeChild(myNode.lastChild);
     }
+    tuids.unshift({tuidtype: tuidtype, tuid: tuid.tuid.toString(), localdate: tuid.toLocaleDateString()});
     addTuidRow(tuidtype, tuid.tuid, tuid.toLocaleDateString());
     saveTuids(tuids);
 }
@@ -89,7 +90,7 @@ function getMillis(inputDate, inputTime){
 }
 function getNumber(inputNumber, max){
     var digitsOnly = /^\d+$/g;
-    var number = Math.floor(Math.random() * max);    
+    var number = Math.floor(Math.random() * max);
     if(digitsOnly.test(inputNumber)){
         if(inputNumber < max){
             number = inputNumber;
@@ -128,7 +129,7 @@ function tuidParser(){
     }else{
         document.getElementById("inputTuidError").classList.remove("invisible");
     }
-    
+
 };
 
 function tuidGenerator(){
@@ -140,7 +141,7 @@ function tuidGenerator(){
     var serverid = getNumber(inputServerId, 255);
     var counter = getNumber(inputCounter, 1023);
     var tuid = generateTuid(millis, counter, serverid);
-    
+
     document.getElementById("gentuidResult").classList.remove("invisible");
     document.getElementById("gentuidCol").innerHTML = tuid.tuid.toString();
     document.getElementById("genmillisCol").innerHTML = tuid.millis.toString();
