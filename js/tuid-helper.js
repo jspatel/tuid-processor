@@ -1,6 +1,28 @@
 
 var tuids = [];
 var historysize = 25;
+function copyToClipboard(text){
+    var toclip = document.getElementById('toclipboard');
+    toclip.innerHTML = text;
+    console.log(text);
+    var range = document.createRange();
+    range.selectNode(toclip);
+    window.getSelection().addRange(range);
+    try {
+        // Now that we've selected the anchor text, execute the copy command
+        var successful = document.execCommand('copy');
+        var msg = successful ? 'successful' : 'unsuccessful';
+        console.log('Copy TUID command was ' + msg);
+    } catch(err) {
+        console.log(err);
+        console.log('Oops, unable to copy' + err);
+    }
+
+    // Remove the selections - NOTE: Should use
+    // removeRange(range) when it is supported
+    window.getSelection().removeAllRanges();
+}
+
 function loadTuids() {
     chrome.storage.local.get('history', function(items) {
         if(items !== undefined && items.history !== undefined){
@@ -153,12 +175,21 @@ function tuidGenerator(){
 
     document.getElementById("inputDate").value = "";
     document.getElementById("inputTime").value = "";
+    document.getElementById("copied").classList.add("hidden");
+    document.getElementById("copy").classList.remove("hidden");
     addTuid('G', tuid);
 };
 
 document.getElementById("generateTuid").onclick =  tuidGenerator;
 document.getElementById("clearhistory").onclick =  clearTuids;
 document.getElementById("dissectTuid").onclick  = tuidParser;
+document.getElementById("copy").onclick  = function (e) {
+    var tuid = document.getElementById("gentuidCol").innerText;
+    copyToClipboard(tuid);
+    document.getElementById("copy").classList.add("hidden");
+    document.getElementById("copied").classList.remove("hidden");
+    event.preventDefault();
+};
 document.getElementById("inputTuid").onkeypress  = function(e){
     if(e.keyCode == 13){
         tuidParser();

@@ -15,6 +15,9 @@
         .emphasis{
             font-weight: bold;
         }
+        .white{
+            color:  white;
+        }
     </style>
 </head>
 <body>
@@ -130,35 +133,46 @@
             <tbody>
             <tr>
                 <td class="mdl-data-table__cell--non-numeric">TUID</td>
-                <td id="gentuidCol"></td>
+                <td>
+                    <span id="gentuidCol"></span>
+                </td>
+                <td>
+                    <a href="" id="copy" ><i class="material-icons">content_copy</i></a>
+                    <i class="material-icons hidden" id="copied">done</i>
+                </td>
             </tr>
             <tr>
                 <th class="mdl-data-table__cell--non-numeric">Base</th>
                 <td id="gentuidBaseCol"></td>
+                <td></td>
             </tr>
             <tr>
                 <th class="mdl-data-table__cell--non-numeric">Epoch</th>
                 <td id="genmillisCol"></td>
+                <td></td>
             </tr>
             <tr>
                 <th class="mdl-data-table__cell--non-numeric">Counter</th>
                 <td id="gencounterCol"></td>
+                <td></td>
             </tr>
             <tr>
                 <th class="mdl-data-table__cell--non-numeric">Server ID</th>
                 <td id="genserveridCol"></td>
+                <td></td>
             </tr>
             <tr>
                 <th class="mdl-data-table__cell--non-numeric">Local</th>
                 <td class="mdl-data-table__cell--non-numeric" id="genlocalDateCol"></td>
+                <td></td>
             </tr>
             <tr>
                 <th class="mdl-data-table__cell--non-numeric">UTC</th>
                 <td class="mdl-data-table__cell--non-numeric" id="genutcDateCol"></td>
+                <td></td>
             </tr>
             </tbody>
         </table>
-
     </div>
     <div class="mdl-tabs__panel" id="history-panel">
         <div class="mdl-grid">
@@ -184,7 +198,9 @@
     <div class="mdl-tooltip " for="tthome">Visit TUID Helper home page for more information.</div>
     <div class="mdl-tooltip " for="ttgenerate">Generated TUID froom provided input or using local date time.</div>
     <div class="mdl-tooltip " for="tthistory">The history of most recently 25 <span class="emphasis">D</span>issected or <span class="emphasis">G</span>enerated TUIDs.</div>
-
+    <div class="mdl-tooltip " for="copy">Click to copy</div>
+    <div class="mdl-tooltip " for="copied">Tuid value copied</div>
+    <span id="toclipboard" class="white"></span>
 </div>
 
 <script src="js/material.min.js"></script>
